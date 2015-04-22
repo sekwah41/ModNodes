@@ -1,5 +1,6 @@
 package com.sekwah.modnodes;
 
+import com.sekwah.modnodes.files.DeleteFolder;
 import com.sekwah.modnodes.files.Unpacker;
 import com.sekwah.modnodes.windows.SplashScreen;
 
@@ -85,7 +86,7 @@ public class Assets {
 
                 JOptionPane.showMessageDialog(null, "Place the forgeSrc into the opened folder once downloaded", "Download ForgeSrc", JOptionPane.INFORMATION_MESSAGE);
 
-                String url = "http://www.planetminecraft.com/mod/naruto-mod-1750133/";
+                String url = "http://adfoc.us/serve/?id=27122854927026";
                 try {
                     java.awt.Desktop.getDesktop().browse(URI.create(url));
                 } catch (IOException e) {
@@ -99,13 +100,13 @@ public class Assets {
                     e.printStackTrace();
                 }
 
-                break;
+                JOptionPane.showMessageDialog(null, "Click ok once forgeSrc has been placed into the folder which was opened", "Download ForgeSrc", JOptionPane.INFORMATION_MESSAGE);
+                continue;
             }
             if(currentOS.contains("WIN")){
                 try {
                     File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
                     Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew setupDecompWorkspace && exit\"");
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -116,6 +117,18 @@ public class Assets {
             }
 
         }
+
+
+        // Cleans up the src folders
+        File javaFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "java");
+        DeleteFolder.delete(javaFolder);
+        javaFolder.mkdir();
+        File resourceFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "resources");
+        DeleteFolder.delete(resourceFolder);
+        resourceFolder.mkdir();
+
+        loadingScreen.fadeOut();
+
         /*File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
         try {
             Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew runClient && exit\"");
