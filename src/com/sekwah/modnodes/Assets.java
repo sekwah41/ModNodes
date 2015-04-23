@@ -8,15 +8,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
+import java.net.URL;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class Assets {
 
-    private static String AppdataStorageLocation;
+    public static String AppdataStorageLocation;
 
     public static BufferedImage favicon = null;
 
@@ -118,19 +118,12 @@ public class Assets {
 
         }
 
-
-        // Cleans up the src folders
-        File javaFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "java");
-        DeleteFolder.delete(javaFolder);
-        javaFolder.mkdir();
-        File resourceFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "resources");
-        DeleteFolder.delete(resourceFolder);
-        resourceFolder.mkdir();
-
         loadingScreen.fadeOut();
 
-        /*File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
-        try {
+        ModNodes.runMinecraft();
+
+        /*try {
+            File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
             Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew runClient && exit\"");
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,4 +140,54 @@ public class Assets {
         }
     }
 
+    public static String readReasourceToString(String resourceLocation) throws IOException {
+        return readFileStream(Assets.class.getResourceAsStream(resourceLocation));
+    }
+
+    private static String readFileStream(InputStream filestream) throws IOException {
+        InputStreamReader inr = new InputStreamReader(filestream, "ASCII");
+        BufferedReader br = new BufferedReader(inr);
+        StringBuffer sb = new StringBuffer();
+        while (true) {
+            String line = br.readLine();
+            if (line == null)
+                break;
+            sb.append(line);
+            sb.append("\n");
+        }
+
+        br.close();
+        inr.close();
+
+        return sb.toString();
+    }
+
+    public static void cleanSrc() {
+        // Cleans up the src folders
+        File javaFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator);
+        DeleteFolder.delete(javaFolder, false);
+        javaFolder.mkdir();
+        File resourceFolder = new File(AppdataStorageLocation + File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator);
+        DeleteFolder.delete(resourceFolder, false);
+        resourceFolder.mkdir();
+    }
+
+    public static URL getResource(String resourceLoc) {
+        return Assets.class.getClassLoader().getResource(resourceLoc);
+    }
+
+    public static void writeFile(File file, String contents) {
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(contents);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            fileWriter.close();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

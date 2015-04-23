@@ -1,14 +1,10 @@
 [
 {
-  "modid": "modNode",
-  "name": "modNodeName",
-  "description": "modNodeDesc",
-  "version": "modNodeModVersion",
-  "mcversion": "modNodeVersion",
-  "url": "",
-  "updateUrl": "",
-  "authorList": [modNodeAuthors],
-  "credits": "Special thanks to sekwah for modnodes.",
-  "logoFile": "modNodeImageName"
+  "modid": "%%modNode%%",
+  "name": "%%modNodeName%%",
+  "description": "%%modNodeDesc%%",
+  "version": "%%modNodeModVersion%%",
+  "mcversion": "%%modNodeMcVersion%%",
+  "authorList": [%%modNodeAuthors%%]%%extradata%%
 }
 ]

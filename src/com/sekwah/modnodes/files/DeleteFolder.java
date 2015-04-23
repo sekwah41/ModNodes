@@ -20,4 +20,22 @@ public class DeleteFolder {
 			file.setWritable(true);
 			file.delete();
 	}
+
+    public static void delete(File file, boolean removeMainFolder) {
+        if(file.isDirectory()) { // Get all files in the folder
+            File[] files=file.listFiles();
+            for(int i=0;i<files.length; i++){
+                delete(files[i]);
+            }
+        }
+        if(removeMainFolder){
+            System.out.println("Deleted: " + file.getPath());
+            file.setWritable(true);
+            file.delete();
+        }
+        else{
+            System.out.println("Kept: " + file.getPath());
+            file.setWritable(true);
+        }
+    }
 }
