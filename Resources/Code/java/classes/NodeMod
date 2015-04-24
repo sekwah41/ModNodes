@@ -1,15 +1,15 @@
-package Code.java;
+package %%modPackage%%;
 
 import net.minecraft.init.Blocks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = ExampleMod.MODID, version = ExampleMod.VERSION)
-public class NodeMod
+@Mod(modid = %%modClassName%%.MODID, version = %%modClassName%%.VERSION)
+public class %%modClassName%%
 {
-    public static final String MODID = "nodeMod";
-    public static final String VERSION = "nodeVersion";
+    public static final String MODID = "%%modID%%";
+    public static final String VERSION = "%%modNodeModVersion%%";
 
     @EventHandler
     public void init(FMLInitializationEvent event)

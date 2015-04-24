@@ -4,6 +4,7 @@
   "name": "%%modNodeName%%",
   "description": "%%modNodeDesc%%",
   "version": "%%modNodeModVersion%%",
+  "url": "",
   "mcversion": "%%modNodeMcVersion%%",
   "authorList": [%%modNodeAuthors%%]%%extradata%%
 }

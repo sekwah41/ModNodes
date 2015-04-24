@@ -120,14 +120,11 @@ public class Assets {
 
         loadingScreen.fadeOut();
 
+
+
         ModNodes.runMinecraft();
 
-        /*try {
-            File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
-            Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew runClient && exit\"");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        System.exit(1);
 
     }
 
@@ -166,10 +163,10 @@ public class Assets {
         // Cleans up the src folders
         File javaFolder = new File(AppdataStorageLocation+ File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator);
         DeleteFolder.delete(javaFolder, false);
-        javaFolder.mkdir();
+        javaFolder.mkdirs();
         File resourceFolder = new File(AppdataStorageLocation + File.separator + "forge" + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator);
         DeleteFolder.delete(resourceFolder, false);
-        resourceFolder.mkdir();
+        resourceFolder.mkdirs();
     }
 
     public static URL getResource(String resourceLoc) {

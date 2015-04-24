@@ -2,6 +2,7 @@ package com.sekwah.modnodes.converter.mcinfo;
 
 import com.sekwah.modnodes.Assets;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ModInfo {
@@ -41,4 +42,7 @@ public class ModInfo {
         currentFile = currentFile.replace(modNode, modID);
     }
 
+    public void writeToFile(File file) {
+        Assets.writeFile(file, currentFile);
+    }
 }
