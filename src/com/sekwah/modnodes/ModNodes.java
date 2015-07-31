@@ -25,7 +25,7 @@ public class ModNodes {
 
     }
 
-    public static boolean runMinecraft(){
+    public static boolean compileAndRunMinecraft(){
 
         String srcLocation = Assets.AppdataStorageLocation + File.separator + "forge" + File.separator + "src" + File.separator + "main";
         Assets.cleanSrc();
@@ -34,11 +34,12 @@ public class ModNodes {
         String packageLocation = "com.sekwah.modnodes";
         String modMainLoc = srcLocation + File.separator + "java" + File.separator + packageLocation.replace(".", File.separator);
         new File(modMainLoc).mkdirs();
-        ModMain modMain = new ModMain("modNode", "1.0", packageLocation);
-        modMain.writeToFile(new File(modMainLoc + File.separator + "modNode.java"));
+        ModMain modMain = new ModMain("modNode", "ModNode", "1.0", packageLocation);
+        modMain.writeToFile(new File(modMainLoc + File.separator + "ModNode.java"));
 
         try {
             File forgeLocation = new File(Assets.AppdataStorageLocation + File.separator + "forge" + File.separator);
+            //Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew runClient\"");
             Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew runClient && exit\"");
         } catch (IOException e) {
             e.printStackTrace();

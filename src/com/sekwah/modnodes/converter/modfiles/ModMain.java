@@ -9,7 +9,7 @@ public class ModMain {
 
     public String currentFile;
 
-    public ModMain(String modID, String modVersion, String packageLocation){
+    public ModMain(String modID, String className, String modVersion, String packageLocation){
         try {
             currentFile = Assets.readReasourceToString("/Code/java/classes/NodeMod");
         } catch (IOException e) {
@@ -17,9 +17,11 @@ public class ModMain {
         }
 
         replace("%%modPackage%%", packageLocation);
-        replace("%%modClassName%%", modID);
+        replace("%%modClassName%%", className);
         replace("%%modID%%", modID);
         replace("%%modNodeModVersion%%", modVersion);
+
+        replace("%%imports%%", "");
 
 
     }

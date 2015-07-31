@@ -2,6 +2,7 @@ package com.sekwah.modnodes;
 
 import com.sekwah.modnodes.files.DeleteFolder;
 import com.sekwah.modnodes.files.Unpacker;
+import com.sekwah.modnodes.windows.ProjectMenu;
 import com.sekwah.modnodes.windows.SplashScreen;
 
 import javax.imageio.ImageIO;
@@ -120,11 +121,12 @@ public class Assets {
 
         loadingScreen.fadeOut();
 
+        ProjectMenu projMenu = new ProjectMenu();
+        projMenu.setVisible(true);
 
+        //ModNodes.compileAndRunMinecraft();
 
-        ModNodes.runMinecraft();
-
-        System.exit(1);
+        //System.exit(1);
 
     }
 
