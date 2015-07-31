@@ -107,8 +107,11 @@ public class Assets {
             if(currentOS.contains("WIN")){
                 try {
                     File forgeLocation = new File(AppdataStorageLocation + File.separator + "forge" + File.separator);
-                    Process p = Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew setupDecompWorkspace && exit\"");
+                    Process p = Runtime.getRuntime().exec("cmd /c start /wait cmd.exe /K \"title ModNodes && cd " + forgeLocation.getAbsolutePath() + " && cls && gradlew setupDecompWorkspace && exit\"");
+                    p.waitFor();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 break;
